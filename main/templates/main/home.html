@@ -1,0 +1,26 @@
+{% extends "main/layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="relative h-[100svh] flex flex-col items-center justify-center text-center bg-gradient-to-br from-purple-900 via-indigo-800 to-blue-900 text-white overflow-hidden px-6">
+
+  <!-- Decorative Glowing Blobs -->
+  <div class="absolute top-[-5rem] left-[-5rem] w-[20rem] h-[20rem] bg-purple-600 opacity-30 rounded-full blur-[100px] animate-pulse"></div>
+  <div class="absolute bottom-[-5rem] right-[-5rem] w-[18rem] h-[18rem] bg-indigo-600 opacity-30 rounded-full blur-[100px] animate-pulse"></div>
+
+  <!-- Hero Text -->
+  <div class="relative z-10 max-w-3xl">
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-6 drop-shadow-xl">
+      Welcome to <span class="text-purple-300">Mahal App</span>
+    </h1>
+    <p class="text-xl md:text-2xl text-purple-100 mb-8">
+      Store and manage every detail of your houses — beautifully, securely, and all in one place.
+    </p>
+    <a href="{% url "Houses:houses" %}" class="inline-block px-8 py-3 bg-white text-indigo-800 font-semibold rounded-full shadow-lg hover:bg-purple-100 transition duration-300">
+      See Houses →
+    </a>
+  </div>
+
+</section>
+{% endblock %}

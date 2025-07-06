@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'dist/style.css' %}">
+    <title>
+        {% block title %}Mahal App{% endblock %}
+    </title>
+</head>
+<body class="{% if transparent_nav %}bg-gradient-to-br from-purple-900 via-indigo-800 to-blue-900 text-white{% else %}bg-white text-black{% endif %} font-sans">
+
+  <nav class="fixed top-0 left-0 z-50 w-full px-6 py-4 flex justify-between items-center 
+    {% if transparent_nav %}
+      bg-transparent text-white
+    {% else %}
+      bg-white text-black
+    {% endif %}
+  ">
+  <a href="/admin">
+    <h1 class="text-xl font-bold">Logo</h1>
+  </a>
+    
+    <ul class="flex gap-6">
+      <li>
+        <a href="/" class="font-medium transition hover:text-blue-400">Home</a>
+      </li>
+      <li>
+        <a href="/features" class="font-medium transition hover:text-blue-400">Features</a>
+      </li>
+      <li>
+        <a href="/contact" class="font-medium transition hover:text-blue-400">Contact</a>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+
+</html>
