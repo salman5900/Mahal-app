@@ -3,7 +3,31 @@
 {% block title %}Houses{% endblock %}
 
 {% block content %}
-<div class="flex items-center justify-center h-screen bg-white">
-  <h1 class="text-4xl font-bold text-black">Houses</h1>
+<div class="mt-24 px-6 bg-white text-black min-h-[40vh] flex items-center justify-center">
+  {% if houses %}
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full">
+      {% for house in houses %}
+        <div class="bg-gray-200 rounded-xl  p-4 space-y-3 w-full max-w-sm mx-auto text-gray-800 shadow-lg">
+          <h2 class="text-lg font-semibold">{{ house.title }}</h2>
+
+          {% if house.image %}
+          <div class="bg-gray-200 h-48 w-full rounded-lg flex items-center justify-center">
+            <img src="{{ house.image.url }}" alt="House image" class="w-full h-full object-cover rounded-lg" />
+          </div>
+          {% else %}
+          <div class="bg-gray-200 h-48 w-full rounded-lg flex items-center justify-center text-gray-500 text-sm">
+            No image
+          </div>
+          {% endif %}
+
+          <p class="text-gray-700">{{ house.description }}</p>
+          <p class="text-xs text-right text-gray-500">Date added on: <span class="font-semibold">{{ house.date_posted }}</span></p>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-red-600 text-lg text-center">🚫 No houses found.</p>
+  {% endif %}
 </div>
 {% endblock %}
+
