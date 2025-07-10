@@ -3,11 +3,11 @@
 {% block title %}Houses{% endblock %}
 
 {% block content %}
-<div class="mt-24 px-6 bg-white text-black min-h-[40vh] flex items-center justify-center">
-  {% if houses %}
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full">
-      {% for house in houses %}
-        <div class="bg-gray-200 rounded-xl  p-4 space-y-3 w-full max-w-sm mx-auto text-gray-800 shadow-lg">
+<div class="mt-24 bg-white text-black min-h-[100vh] flex items-center justify-center pb-20">
+  {% if houses %} 
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-6 w-full max-w-7xl mx-auto px-4 py-4">
+      {% for house in houses %} 
+        <div class="bg-gray-200 rounded-xl p-4 space-y-3 w-full max-w-sm mx-auto text-gray-800 shadow-lg">
           <h2 class="text-lg font-semibold">{{ house.title }}</h2>
 
           {% if house.image %}
@@ -28,6 +28,5 @@
   {% else %}
     <p class="text-red-600 text-lg text-center">🚫 No houses found.</p>
   {% endif %}
-</div>
+</div> 
 {% endblock %}
-
