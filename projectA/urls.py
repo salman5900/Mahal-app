@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),  # Include URLs from the main app
     path('houses/', include('houses.urls')),
+    path('programs/', include('programs.urls')),  # Include URLs from the programs app
 ]
 
 if settings.DEBUG:
