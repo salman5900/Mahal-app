@@ -9,3 +9,11 @@ def houses(request):
         'transparent_nav': False,
     }
     return render(request, 'Houses/houses.html', context)
+
+def house_detail(request, house_id):
+    house = Hosuse.objects.get(id=house_id)
+    context = {
+        'house': house,
+        'transparent_nav': False,
+    }
+    return render(request, 'Houses/house_detail.html', context)

@@ -7,23 +7,29 @@
   {% if houses %} 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-6 w-full max-w-7xl mx-auto px-4 py-4">
       {% for house in houses %} 
-        <div class="bg-gray-200 rounded-xl p-4 space-y-3 w-full max-w-sm mx-auto text-gray-800 shadow-lg">
-          <h2 class="text-lg font-semibold">{{ house.title }}</h2>
+    <a href="{% url 'Houses:house_detail' house.id %}" class="block">
+      <div class="bg-gray-200 rounded-xl p-3 space-y-2 w-full max-w-sm mx-auto text-gray-800 shadow-lg flex flex-col justify-between" style="min-height: 340px;">
+
+        <div>
+          <h2 class="text-2xl font-semibold mb-3 ">{{ house.title }}</h2>
 
           {% if house.image %}
-          <div class="bg-gray-200 h-48 w-full rounded-lg flex items-center justify-center">
+          <div class="bg-gray-200 h-48 w-full rounded-lg flex items-center justify-center mb-2">
             <img src="{{ house.image.url }}" alt="House image" class="w-full h-full object-cover rounded-lg" />
           </div>
           {% else %}
-          <div class="bg-gray-200 h-48 w-full rounded-lg flex items-center justify-center text-gray-500 text-sm">
+          <div class="bg-gray-200 h-48 w-full rounded-lg flex items-center justify-center text-gray-500 text-sm mb-2">
             No image
           </div>
           {% endif %}
 
-          <p class="text-gray-700">{{ house.description }}</p>
-          <p class="text-xs text-right text-gray-500">Date added on: <span class="font-semibold">{{ house.date_posted }}</span></p>
+          <p class="text-gray-700 min-h-[60px]">{% if house.description %}{{ house.description }}{% else %}&nbsp;{% endif %}</p>
         </div>
-      {% endfor %}
+        <p class="text-xs text-right text-gray-500 mt-auto">Date added on: <span class="font-semibold">{{ house.date_posted }}</span></p>
+      </div>
+    </a>
+  {% endfor %}
+
     </div>
   {% else %}
     <p class="text-red-600 text-lg text-center">🚫 No houses found.</p>
