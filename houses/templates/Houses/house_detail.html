@@ -1,34 +1,46 @@
 {% extends "main/layout.html" %}
-
 {% block title %}{{ house.title }}{% endblock %}
 
 {% block content %}
-<div style="margin-top: 60px; padding: 0 20px 80px 20px; max-width: 900px; margin-left: auto; margin-right: auto;">
+<div class="min-h-[100vh] bg-gray-50 px-4 py-28 flex items-start justify-center">
 
-  
-  <h1 style="font-size: 32px; font-weight: bold; margin-bottom: 20px;">{{ house.title }}</h1>
+  <div class="w-full max-w-5xl bg-white rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.04)] p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
 
-  {% if house.image %}
-    <div style="width: 100%; max-width: 500px; margin-bottom: 25px;">
-      <img src="{{ house.image.url }}" alt="{{ house.title }}" style="width: 100%; height: auto; display: block; border-radius: 18px;">
+    <!-- Image Block -->
+    <div class="flex items-start justify-center">
+      {% if house.image %}
+        <img src="{{ house.image.url }}" alt="{{ house.title }}" class="w-full max-w-sm rounded-xl object-cover" />
+      {% else %}
+        <div class="w-full max-w-sm h-64 bg-gray-200 rounded-xl flex items-center justify-center text-gray-500">
+          No image
+        </div>
+      {% endif %}
     </div>
-  {% endif %}
 
-  <div style="font-size: 17px; line-height: 1.8; color: #222;">
-    <p><strong>Description:</strong> {{ house.description }}</p>
-    <p><strong>Head of House:</strong> {{ house.head_of_house }}</p>
-    <p><strong>Total Members:</strong> {{ house.total_members }}</p>
-    {% if house.contact_number %}
-      <p><strong>Contact Number:</strong> {{ house.contact_number }}</p>
-    {% endif %}
-    {% if house.address %}
-      <p><strong>Address:</strong> {{ house.address }}</p>
-    {% endif %}
-    {% if house.zone %}
-      <p><strong>Zone:</strong> {{ house.zone }}</p>
-    {% endif %}
-    <p><strong>Date Posted:</strong> {{ house.date_posted }}</p>
+    <!-- Content Block -->
+    <div class="space-y-5 text-gray-800">
+      <h1 class="text-3xl font-bold text-gray-900">{{ house.title }}</h1>
+
+      {% if house.description %}
+        <p class="text-lg leading-relaxed">{{ house.description }}</p>
+      {% endif %}
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 text-sm">
+        <p><span class="font-semibold">👤 Head of House:</span> {{ house.head_of_house }}</p>
+        <p><span class="font-semibold">👥 Total Members:</span> {{ house.total_members }}</p>
+        {% if house.contact_number %}
+          <p><span class="font-semibold">📞 Contact:</span> {{ house.contact_number }}</p>
+        {% endif %}
+        {% if house.address %}
+          <p><span class="font-semibold">📍 Address:</span> {{ house.address }}</p>
+        {% endif %}
+        {% if house.zone %}
+          <p><span class="font-semibold">🌐 Zone:</span> {{ house.zone }}</p>
+        {% endif %}
+        <p><span class="font-semibold">📅 Posted:</span> {{ house.date_posted|date:"F d, Y, g:i a" }}</p>
+      </div>
+    </div>
+
   </div>
-
 </div>
 {% endblock %}

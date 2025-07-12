@@ -1,0 +1,47 @@
+{% extends "main/layout.html" %}
+{% block title %}{{ program.title }}{% endblock %}
+
+{% block content %}
+<div class="min-h-[100vh] bg-gray-50 px-4 py-24 flex justify-center">
+   <div class="w-full max-w-4xl bg-white rounded-2xl shadow-[0_12px_32px_rgba(0,0,0,0.15)] p-8 flex flex-col">
+     <!-- Content Section -->
+     <div class="flex-1 space-y-6">
+       <!-- Title -->
+       <h1 class="text-3xl font-bold text-gray-900">{{ program.title }}</h1>
+
+       <!-- Description -->
+       {% if program.description %}
+         <p class="text-lg text-gray-700 leading-relaxed">{{ program.description }}</p>
+       {% endif %}
+
+       <!-- Info Grid -->
+       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 text-sm text-gray-800">
+         <p><span class="font-semibold">📅 Posted:</span> {{ program.date_posted|date:"F d, Y, g:i a" }}</p>
+         <p><span class="font-semibold">🕒 Starts:</span> {{ program.start_time|date:"F d, Y, g:i a" }}</p>
+         <p><span class="font-semibold">🕔 Ends:</span> {{ program.end_time|date:"F d, Y, g:i a" }}</p>
+         <p><span class="font-semibold">📍 Location:</span> {{ program.location }}</p>
+         <p><span class="font-semibold">👤 Organizer:</span> {{ program.organizer }}</p>
+         {% if program.contact_number %}
+           <p><span class="font-semibold">📞 Contact:</span> {{ program.contact_number }}</p>
+         {% endif %}
+       </div>
+     </div>
+
+     <!-- Finance Block - Positioned at bottom -->
+     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 text-center">
+       <div class="bg-gray-100 rounded-xl py-4">
+         <p class="text-gray-500 text-sm">💰 Income</p>
+         <p class="text-green-600 font-semibold text-lg">₹ {{ program.income }}</p>
+       </div>
+       <div class="bg-gray-100 rounded-xl py-4">
+         <p class="text-gray-500 text-sm">💸 Spend</p>
+         <p class="text-red-600 font-semibold text-lg">₹ {{ program.spend }}</p>
+       </div>
+       <div class="bg-gray-100 rounded-xl py-4">
+         <p class="text-gray-500 text-sm">📊 Balance</p>
+         <p class="text-blue-600 font-semibold text-lg">₹ {{ program.balance }}</p>
+       </div>
+     </div>
+   </div>
+</div>
+{% endblock %}

@@ -1,7 +1,38 @@
 {% extends "main/layout.html" %}
-
 {% block title %}Programs{% endblock %}
 
 {% block content %}
+<div class="mt-12 bg-gray-100 min-h-[100vh] py-12 px-4 md:px-12">
+  <h1 class="text-3xl font-bold mb-8 text-center text-gray-800">Programs</h1>
 
+  <div class="grid gap-6">
+    {% for program in programs %}
+    <a href="{% url 'programs:program_detail' program.id %}" class="block hover:-translate-y-1 transition duration-300 ease-in-out">
+      <div class="bg-white rounded-2xl shadow-md p-6 border border-gray-200">
+        <h2 class="text-xl font-semibold text-gray-800 mb-2">{{ program.title }}</h2>
+        <p class="text-gray-600 mb-2">{{ program.description }}</p>
+        <p class="text-sm text-gray-500 mb-1">📅 Posted on: {{ program.date_posted|date:"M d, Y H:i" }}</p>
+        <p class="text-sm text-gray-500 mb-1">📍 Location: {{ program.location }}</p>
+        <p class="text-sm text-gray-500 mb-1">🕒 From: {{ program.start_time|date:"M d, Y H:i" }} → {{ program.end_time|date:"M d, Y H:i" }}</p>
+        <div class="mt-4 grid grid-cols-3 gap-4 text-center">
+          <div>
+            <p class="text-sm text-gray-500">Income</p>
+            <p class="font-medium text-green-600">₹ {{ program.income }}</p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">Spend</p>
+            <p class="font-medium text-red-600">₹ {{ program.spend }}</p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">Balance</p>
+            <p class="font-medium text-blue-600">₹ {{ program.balance }}</p>
+          </div>
+        </div>
+      </div>
+    </a>
+    {% empty %}
+      <p class="text-center text-gray-500">No programs posted yet.</p>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}
